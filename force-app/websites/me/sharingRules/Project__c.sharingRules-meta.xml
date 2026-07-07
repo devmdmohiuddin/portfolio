@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingGuestRules>
+        <fullName>Portfolio_Project_Guest_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <description
+    >Lets the Portfolio site guest user read published project records. Project Tech records inherit this via the master-detail relationship.</description>
+        <label>Portfolio Project Guest Read</label>
+        <sharedTo>
+            <guestUser>Portfolio</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>Is_Published__c</field>
+            <operation>equals</operation>
+            <value>true</value>
+        </criteriaItems>
+    </sharingGuestRules>
+</SharingRules>

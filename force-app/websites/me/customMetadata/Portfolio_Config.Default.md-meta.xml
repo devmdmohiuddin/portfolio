@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomMetadata
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <label>Default</label>
+    <protected>false</protected>
+    <values>
+        <field>Full_Name__c</field>
+        <value xsi:type="xsd:string">Md Mohiuddin</value>
+    </values>
+    <values>
+        <field>Tagline__c</field>
+        <value xsi:type="xsd:string">I build things for the web.</value>
+    </values>
+    <values>
+        <field>Intro__c</field>
+        <value
+      xsi:type="xsd:string"
+    >I&apos;m a Salesforce developer who enjoys building accessible, data-driven digital experiences. I focus on clean architecture, motion, and turning content into records so non-devs can keep the site fresh.</value>
+    </values>
+    <values>
+        <field>Email__c</field>
+        <value xsi:type="xsd:string">shuvobh1998@gmail.com</value>
+    </values>
+    <values>
+        <field>GitHub_URL__c</field>
+        <value xsi:type="xsd:string">https://github.com/devmdmohiuddin</value>
+    </values>
+    <values>
+        <field>LinkedIn_URL__c</field>
+        <value
+      xsi:type="xsd:string"
+    >https://www.linkedin.com/in/themdmohiuddin/</value>
+    </values>
+    <values>
+        <field>Availability_Message__c</field>
+        <value
+      xsi:type="xsd:string"
+    >I&apos;m currently open to new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I&apos;ll do my best to get back to you.</value>
+    </values>
+</CustomMetadata>
