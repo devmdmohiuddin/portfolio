@@ -1,0 +1,123 @@
+:host {
+  display: block;
+}
+
+.pf-rail {
+  position: fixed;
+  bottom: 0;
+  z-index: var(--pf-z-rails, 10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--pf-rail-width, 40px);
+}
+
+.pf-rail--social {
+  left: clamp(1rem, 3vw, 2.5rem);
+}
+
+.pf-rail--email {
+  right: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Vertical connecting line down to the bottom of the viewport. */
+.pf-rail__spine {
+  display: block;
+  width: 1px;
+  height: 90px;
+  margin-top: var(--pf-space-3, 1rem);
+  background: var(--pf-slate, #8892b0);
+}
+
+/* ------------------------------ social ------------------------------ */
+.pf-rail__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pf-space-3, 1rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf-rail__link {
+  display: inline-flex;
+  padding: var(--pf-space-1, 0.25rem);
+  color: var(--pf-slate-light, #a8b2d1);
+  transition:
+    transform var(--pf-duration-fast) var(--pf-ease),
+    color var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-rail__link:hover,
+.pf-rail__link:focus-visible {
+  color: var(--pf-accent, #64ffda);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+.pf-rail__icon {
+  --slds-c-icon-color-foreground-default: currentColor;
+  --sds-c-icon-color-foreground-default: currentColor;
+}
+
+/* ------------------------------- email ------------------------------ */
+.pf-rail__email {
+  writing-mode: vertical-rl;
+  margin-bottom: var(--pf-space-3, 1rem);
+  color: var(--pf-slate-light, #a8b2d1);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-xs, 0.75rem);
+  transition:
+    transform var(--pf-duration-fast) var(--pf-ease),
+    color var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-rail__email:hover,
+.pf-rail__email:focus-visible {
+  color: var(--pf-accent, #64ffda);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+/* --------------------- slide-in entrance on load -------------------- */
+.pf-rails .pf-rail__item,
+.pf-rails .pf-rail__email {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.pf-rails[data-loaded="true"] .pf-rail__item,
+.pf-rails[data-loaded="true"] .pf-rail__email {
+  animation: pf-rail-rise var(--pf-duration-slow, 0.6s) var(--pf-ease) forwards;
+  animation-delay: var(--pf-delay, 0ms);
+}
+
+.pf-rails[data-loaded="true"] .pf-rail__email {
+  animation-delay: 1400ms;
+}
+
+@keyframes pf-rail-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide the rails where there isn't room (they duplicate inline links). */
+@media (max-width: 1080px) {
+  .pf-rail {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-rails .pf-rail__item,
+  .pf-rails .pf-rail__email {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

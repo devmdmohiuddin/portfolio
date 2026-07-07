@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>text/css</contentType>
+    <description>Portfolio design tokens (colors, typography, motion) and shared keyframes. Canonical source for the design system; mirrored into the LWR site global styles.css.</description>
+</StaticResource>

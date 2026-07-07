@@ -1,0 +1,21 @@
+<template>
+  <section
+    class="pf-section"
+    id={sectionId}
+    data-reveal
+    aria-labelledby={headingId}
+  >
+    <template lwc:if={hasHeading}>
+      <h2 class="pf-section__heading" id={headingId}>
+        <template lwc:if={sectionNumber}>
+          <span class="pf-section__number">{sectionNumber}.</span>
+        </template>
+        <span class="pf-section__title">{sectionTitle}</span>
+        <span class="pf-section__line" aria-hidden="true"></span>
+      </h2>
+    </template>
+    <div class="pf-section__body">
+      <slot></slot>
+    </div>
+  </section>
+</template>

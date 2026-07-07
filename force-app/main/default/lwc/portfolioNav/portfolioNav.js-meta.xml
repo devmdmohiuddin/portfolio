@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Portfolio Nav</masterLabel>
+    <description
+  >Sticky top navigation: monogram logo, 01–04 section links, and Resume button with a staggered on-load entrance.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+        name="initials"
+        type="String"
+        default="MM"
+        label="Logo Initials"
+        description="Monogram shown in the logo mark."
+      />
+            <property
+        name="resumeUrl"
+        type="String"
+        label="Resume URL"
+        description="Link for the Resume button. Leave blank to hide it."
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

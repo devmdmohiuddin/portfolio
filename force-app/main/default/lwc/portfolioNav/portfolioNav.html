@@ -1,0 +1,46 @@
+<template>
+  <header class={headerClass} data-loaded={loaded}>
+    <nav class="pf-nav" aria-label="Primary">
+      <a
+        class="pf-nav__logo"
+        href="#top"
+        aria-label="Home"
+        onclick={handleNavClick}
+        data-target="top"
+        style="--pf-delay: 0ms"
+      >
+        <span class="pf-nav__logo-mark">{initials}</span>
+      </a>
+
+      <div class="pf-nav__menu">
+        <ol class="pf-nav__links">
+          <template for:each={links} for:item="link">
+            <li key={link.id} class="pf-nav__item" style={link.style}>
+              <a
+                class="pf-nav__link"
+                href={link.href}
+                data-target={link.id}
+                onclick={handleNavClick}
+              >
+                <span class="pf-nav__link-number">{link.number}.</span>
+                <span class="pf-nav__link-label">{link.label}</span>
+              </a>
+            </li>
+          </template>
+        </ol>
+
+        <template lwc:if={resumeUrl}>
+          <a
+            class="pf-nav__resume"
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={resumeStyle}
+          >
+            Resume
+          </a>
+        </template>
+      </div>
+    </nav>
+  </header>
+</template>

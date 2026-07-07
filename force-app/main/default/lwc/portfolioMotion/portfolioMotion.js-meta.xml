@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>false</isExposed>
+    <masterLabel>Portfolio Motion</masterLabel>
+    <description
+  >Shared motion toolkit: reduced-motion detection, scroll-reveal, and staggered entrance helpers.</description>
+</LightningComponentBundle>

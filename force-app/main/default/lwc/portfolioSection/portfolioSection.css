@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+.pf-section {
+  max-width: var(--pf-content-width, 1000px);
+  margin: 0 auto;
+  padding: var(--pf-space-7, 5rem) var(--pf-space-4, 1.5rem);
+
+  /* Scroll-reveal start state; toggled by the `is-visible` class. */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--pf-duration-slow, 0.6s) var(--pf-ease),
+    transform var(--pf-duration-slow, 0.6s) var(--pf-ease);
+  will-change: opacity, transform;
+}
+
+.pf-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Offset anchor scrolling so the sticky nav never covers the heading. */
+.pf-section {
+  scroll-margin-top: var(--pf-nav-height, 100px);
+}
+
+.pf-section__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--pf-space-2, 0.5rem);
+  margin: 0 0 var(--pf-space-5, 2rem);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 600;
+  color: var(--pf-heading, #ccd6f6);
+  white-space: nowrap;
+}
+
+.pf-section__number {
+  font-family: var(--pf-font-mono, monospace);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 400;
+  color: var(--pf-accent, #64ffda);
+}
+
+.pf-section__line {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: 1px;
+  margin-left: var(--pf-space-3, 1rem);
+  background: var(--pf-bg-lightest, #233554);
+}
+
+.pf-section__body {
+  color: var(--pf-slate, #8892b0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

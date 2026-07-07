@@ -1,0 +1,167 @@
+:host {
+  display: block;
+}
+
+.pf-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--pf-z-nav, 100);
+  width: 100%;
+  background: var(--pf-bg-overlay, rgba(2, 12, 27, 0.7));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    height var(--pf-duration) var(--pf-ease),
+    box-shadow var(--pf-duration) var(--pf-ease),
+    background-color var(--pf-duration) var(--pf-ease);
+}
+
+.pf-header--scrolled {
+  box-shadow: 0 10px 30px -10px var(--pf-shadow, rgba(2, 12, 27, 0.7));
+}
+
+.pf-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--pf-nav-height, 100px);
+  max-width: var(--pf-max-width, 1600px);
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 3rem);
+  transition: height var(--pf-duration) var(--pf-ease);
+}
+
+.pf-header--scrolled .pf-nav {
+  height: var(--pf-nav-height-scrolled, 70px);
+}
+
+/* ------------------------------- logo ------------------------------- */
+.pf-nav__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--pf-accent, #64ffda);
+  border-radius: 6px;
+  color: var(--pf-accent, #64ffda);
+  text-decoration: none;
+  font-family: var(--pf-font-mono, monospace);
+  font-weight: 700;
+  transition:
+    background-color var(--pf-duration-fast) var(--pf-ease),
+    transform var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-nav__logo:hover,
+.pf-nav__logo:focus-visible {
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.pf-nav__logo-mark {
+  font-size: var(--pf-fs-sm, 0.875rem);
+  letter-spacing: 0.05em;
+}
+
+/* ------------------------------- menu ------------------------------- */
+.pf-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--pf-space-4, 1.5rem);
+}
+
+.pf-nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.pf-nav__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--pf-space-1, 0.25rem);
+  color: var(--pf-slate-lightest, #ccd6f6);
+  text-decoration: none;
+  font-size: var(--pf-fs-sm, 0.875rem);
+  transition: color var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-nav__link-number {
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-xs, 0.75rem);
+  color: var(--pf-accent, #64ffda);
+}
+
+.pf-nav__link:hover,
+.pf-nav__link:focus-visible {
+  color: var(--pf-accent, #64ffda);
+  outline: none;
+}
+
+.pf-nav__resume {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--pf-accent, #64ffda);
+  border-radius: 6px;
+  color: var(--pf-accent, #64ffda);
+  text-decoration: none;
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-xs, 0.75rem);
+  line-height: 1;
+  transition:
+    background-color var(--pf-duration-fast) var(--pf-ease),
+    transform var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-nav__resume:hover,
+.pf-nav__resume:focus-visible {
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* --------------------- staggered on-load entrance ------------------- */
+.pf-nav__logo,
+.pf-nav__item,
+.pf-nav__resume {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.pf-header[data-loaded="true"] .pf-nav__logo,
+.pf-header[data-loaded="true"] .pf-nav__item,
+.pf-header[data-loaded="true"] .pf-nav__resume {
+  animation: pf-nav-drop var(--pf-duration-slow, 0.6s) var(--pf-ease) forwards;
+  animation-delay: var(--pf-delay, 0ms);
+}
+
+@keyframes pf-nav-drop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----------------------------- responsive --------------------------- */
+@media (max-width: 640px) {
+  .pf-nav__links {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-nav__logo,
+  .pf-nav__item,
+  .pf-nav__resume {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

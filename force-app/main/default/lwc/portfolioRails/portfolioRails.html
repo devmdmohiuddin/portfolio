@@ -1,0 +1,36 @@
+<template>
+  <div class="pf-rails" data-loaded={loaded}>
+    <!-- Left rail: social icons -->
+    <aside class="pf-rail pf-rail--social" aria-label="Social links">
+      <ul class="pf-rail__list">
+        <template for:each={socials} for:item="social">
+          <li key={social.id} class="pf-rail__item" style={social.style}>
+            <a
+              class="pf-rail__link"
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              title={social.label}
+            >
+              <lightning-icon
+                icon-name={social.icon}
+                size="x-small"
+                class="pf-rail__icon"
+              ></lightning-icon>
+            </a>
+          </li>
+        </template>
+      </ul>
+      <span class="pf-rail__spine" aria-hidden="true"></span>
+    </aside>
+
+    <!-- Right rail: email -->
+    <template lwc:if={email}>
+      <aside class="pf-rail pf-rail--email" aria-label="Email">
+        <a class="pf-rail__email" href={mailto}>{email}</a>
+        <span class="pf-rail__spine" aria-hidden="true"></span>
+      </aside>
+    </template>
+  </div>
+</template>

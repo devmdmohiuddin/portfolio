@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Portfolio Rails</masterLabel>
+    <description
+  >Sticky left social rail and right email rail that slide in after load.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="githubUrl" type="String" label="GitHub URL" />
+            <property name="linkedinUrl" type="String" label="LinkedIn URL" />
+            <property name="twitterUrl" type="String" label="Twitter URL" />
+            <property name="instagramUrl" type="String" label="Instagram URL" />
+            <property
+        name="email"
+        type="String"
+        label="Email"
+        description="Shown on the right rail as a vertical mailto link."
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Portfolio Section</masterLabel>
+    <description
+  >Shared section wrapper with a numbered heading and scroll-reveal.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+        name="sectionId"
+        type="String"
+        label="Section Id (anchor)"
+        description="Anchor id used for nav links and smooth scrolling, e.g. about."
+      />
+            <property
+        name="sectionNumber"
+        type="String"
+        label="Section Number"
+        description="Two-digit ordinal shown before the title, e.g. 01."
+      />
+            <property
+        name="sectionTitle"
+        type="String"
+        label="Section Title"
+        description="Heading text, e.g. About Me."
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
