@@ -64,7 +64,7 @@
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>
     </tabs>
-    <urlPathPrefix>me</urlPathPrefix>
+    <urlPathPrefix>portfoliovforcesite</urlPathPrefix>
     <welcomeTemplate
   >unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
 </Network>
