@@ -59,12 +59,12 @@
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Portfolio</site>
     <siteArchiveStatus>NotArchived</siteArchiveStatus>
-    <status>DownForMaintenance</status>
+    <status>Live</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>
     </tabs>
-    <urlPathPrefix>portfoliovforcesite</urlPathPrefix>
+    <urlPathPrefix>portfolio</urlPathPrefix>
     <welcomeTemplate
   >unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
 </Network>
