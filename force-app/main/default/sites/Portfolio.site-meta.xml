@@ -29,5 +29,5 @@
     <siteGuestRecordDefaultOwner
   >devmdmohiuddin0241@salesforce.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
-    <urlPathPrefix>portfolio</urlPathPrefix>
+    <urlPathPrefix>me</urlPathPrefix>
 </CustomSite>
