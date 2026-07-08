@@ -1,0 +1,72 @@
+<template>
+  <c-portfolio-section
+    section-id="experience"
+    section-number="02"
+    section-title="Where I've Worked"
+  >
+    <template lwc:if={hasExperiences}>
+      <div class="pf-exp" data-reveal>
+        <div
+          class="pf-exp__tablist"
+          role="tablist"
+          aria-label="Work experience"
+          style={tablistStyle}
+          onkeydown={handleTabKeydown}
+        >
+          <template for:each={tabs} for:item="tab">
+            <button
+              key={tab.id}
+              id={tab.tabId}
+              class={tab.cssClass}
+              role="tab"
+              aria-selected={tab.selected}
+              aria-controls={tab.panelId}
+              tabindex={tab.tabindex}
+              data-index={tab.index}
+              onclick={handleTabClick}
+            >
+              {tab.label}
+            </button>
+          </template>
+          <span class="pf-exp__indicator" aria-hidden="true"></span>
+        </div>
+
+        <template for:each={activePanel} for:item="panel">
+          <div
+            key={panel.id}
+            id={activePanelId}
+            class="pf-exp__panel"
+            role="tabpanel"
+            aria-labelledby={activeTabId}
+            tabindex="0"
+          >
+            <h3 class="pf-exp__role">
+              {panel.role}
+              <template lwc:if={panel.company}>
+                <span class="pf-exp__company">
+                  &nbsp;@&nbsp;
+                  <template lwc:if={panel.companyUrl}>
+                    <a
+                      class="pf-exp__company-link"
+                      href={panel.companyUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      >{panel.company}</a
+                    >
+                  </template>
+                  <template lwc:else>{panel.company}</template>
+                </span>
+              </template>
+            </h3>
+            <p class="pf-exp__range">{panel.dateRange}</p>
+            <ul class="pf-exp__highlights" role="list">
+              <template for:each={panel.highlights} for:item="hl">
+                <li key={hl.id} class="pf-exp__highlight">{hl.text}</li>
+              </template>
+            </ul>
+          </div>
+        </template>
+      </div>
+    </template>
+  </c-portfolio-section>
+</template>
