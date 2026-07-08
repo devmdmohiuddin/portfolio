@@ -1,0 +1,114 @@
+:host {
+  display: block;
+}
+
+.pf-contact {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ------------------------- scroll reveal ---------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--pf-duration-slow, 0.6s) var(--pf-ease),
+    transform var(--pf-duration-slow, 0.6s) var(--pf-ease);
+  transition-delay: var(--pf-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------ copy -------------------------------- */
+.pf-contact__overline {
+  margin: 0 0 var(--pf-space-3, 1rem);
+  color: var(--pf-accent, #64ffda);
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-sm, 0.875rem);
+}
+
+.pf-contact__title {
+  margin: 0 0 var(--pf-space-3, 1rem);
+  color: var(--pf-heading, #ccd6f6);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.pf-contact__message {
+  margin: 0;
+  color: var(--pf-slate-light, #a8b2d1);
+  font-size: var(--pf-fs-md, 1.125rem);
+  line-height: 1.6;
+}
+
+/* ------------------------------ CTA --------------------------------- */
+.pf-contact__cta-wrap {
+  margin-top: var(--pf-space-6, 3rem);
+}
+
+/* Shared accent-outline treatment: fill wipes in on hover. */
+.pf-contact__cta {
+  display: inline-block;
+  position: relative;
+  padding: 1.25rem 1.75rem;
+  border: 1px solid var(--pf-accent, #64ffda);
+  border-radius: 6px;
+  overflow: hidden;
+  color: var(--pf-accent, #64ffda);
+  background: transparent;
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-sm, 0.875rem);
+  text-decoration: none;
+  transition:
+    color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    transform var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    box-shadow var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-contact__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--pf-duration, 0.4s) var(--pf-ease);
+}
+
+.pf-contact__cta:hover,
+.pf-contact__cta:focus-visible {
+  outline: none;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -12px var(--pf-shadow, rgba(2, 12, 27, 0.7));
+}
+
+.pf-contact__cta:hover::before,
+.pf-contact__cta:focus-visible::before {
+  transform: scaleX(1);
+}
+
+/* ------------------------- reduced motion --------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pf-contact__cta,
+  .pf-contact__cta::before {
+    transition: none;
+  }
+
+  .pf-contact__cta:hover,
+  .pf-contact__cta:focus-visible {
+    transform: none;
+  }
+}

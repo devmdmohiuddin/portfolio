@@ -1,0 +1,118 @@
+:host {
+  display: block;
+}
+
+.pf-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pf-space-3, 1rem);
+  padding: var(--pf-space-4, 1.5rem);
+  text-align: center;
+
+  /* Scroll-reveal start state; toggled by the `is-visible` class. */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--pf-duration-slow, 0.6s) var(--pf-ease),
+    transform var(--pf-duration-slow, 0.6s) var(--pf-ease);
+  will-change: opacity, transform;
+}
+
+.pf-footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------- socials ------------------------------- */
+/* Only shown on narrow screens, where the fixed side rails are hidden. */
+.pf-footer__socials {
+  display: none;
+  gap: var(--pf-space-4, 1.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 1080px) {
+  .pf-footer__socials {
+    display: flex;
+  }
+}
+
+.pf-footer__social-link {
+  display: inline-flex;
+  padding: var(--pf-space-2, 0.5rem);
+  color: var(--pf-slate-light, #a8b2d1);
+  transition:
+    color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    transform var(--pf-duration-fast, 0.2s) var(--pf-ease);
+  will-change: transform;
+}
+
+.pf-footer__social-link:hover,
+.pf-footer__social-link:focus-visible {
+  color: var(--pf-accent, #64ffda);
+  transform: translateY(-3px);
+}
+
+.pf-footer__social-icon {
+  --slds-c-icon-color-foreground: currentColor;
+  --slds-c-icon-color-foreground-default: currentColor;
+}
+
+/* ------------------------------ credit ------------------------------- */
+.pf-footer__credit {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pf-space-2, 0.5rem);
+  padding: var(--pf-space-2, 0.5rem);
+  color: var(--pf-slate, #8892b0);
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-xs, 0.8125rem);
+  line-height: 1;
+  text-decoration: none;
+  transition: color var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-footer__credit:hover,
+.pf-footer__credit:focus-visible {
+  color: var(--pf-accent, #64ffda);
+}
+
+.pf-footer__stats {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pf-space-3, 1rem);
+}
+
+.pf-footer__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pf-space-1, 0.25rem);
+}
+
+.pf-footer__stat-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ------------------------- reduced motion --------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pf-footer {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pf-footer__social-link,
+  .pf-footer__credit {
+    transition: none;
+  }
+
+  .pf-footer__social-link:hover,
+  .pf-footer__social-link:focus-visible {
+    transform: none;
+  }
+}

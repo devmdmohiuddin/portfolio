@@ -38,6 +38,8 @@ export function prefersReducedMotion() {
  * @param {number}  [options.threshold=0.1]  visibility ratio that triggers reveal
  * @param {string}  [options.rootMargin="0px 0px -10% 0px"] observer root margin
  * @param {boolean} [options.once=true]  stop observing after first reveal
+ * @param {(el: Element) => void} [options.onReveal]  called when an element
+ *        reveals (immediately under reduced motion) — e.g. to start a counter
  * @returns {() => void}  disconnect function (safe to call in disconnectedCallback)
  */
 export function revealOnScroll(elements, options = {}) {
@@ -45,7 +47,8 @@ export function revealOnScroll(elements, options = {}) {
     revealClass = REVEAL_CLASS,
     threshold = 0.1,
     rootMargin = "0px 0px -10% 0px",
-    once = true
+    once = true,
+    onReveal
   } = options;
 
   const items = Array.from(elements || []).filter(Boolean);
@@ -55,7 +58,12 @@ export function revealOnScroll(elements, options = {}) {
 
   // Reduced motion or no IntersectionObserver → reveal immediately, no animation.
   if (prefersReducedMotion() || typeof IntersectionObserver === "undefined") {
-    items.forEach((el) => el.classList.add(revealClass));
+    items.forEach((el) => {
+      el.classList.add(revealClass);
+      if (onReveal) {
+        onReveal(el);
+      }
+    });
     return () => {};
   }
 
@@ -66,6 +74,9 @@ export function revealOnScroll(elements, options = {}) {
           return;
         }
         entry.target.classList.add(revealClass);
+        if (onReveal) {
+          onReveal(entry.target);
+        }
         if (once) {
           obs.unobserve(entry.target);
         }

@@ -1,0 +1,16 @@
+<template>
+  <c-portfolio-section section-id="contact">
+    <div class="pf-contact">
+      <p class="pf-contact__overline" data-reveal>04. What’s Next?</p>
+      <h2 class="pf-contact__title" data-reveal>Get In Touch</h2>
+      <template lwc:if={availabilityMessage}>
+        <p class="pf-contact__message" data-reveal>{availabilityMessage}</p>
+      </template>
+      <template lwc:if={mailto}>
+        <div class="pf-contact__cta-wrap" data-reveal>
+          <a class="pf-contact__cta" href={mailto}>Say Hello</a>
+        </div>
+      </template>
+    </div>
+  </c-portfolio-section>
+</template>

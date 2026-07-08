@@ -1,0 +1,80 @@
+<template>
+  <footer class="pf-footer" data-reveal>
+    <ul class="pf-footer__socials" role="list" aria-label="Social links">
+      <template for:each={socials} for:item="social">
+        <li key={social.id} class="pf-footer__social-item">
+          <a
+            class="pf-footer__social-link"
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            title={social.label}
+          >
+            <lightning-icon
+              icon-name={social.icon}
+              size="x-small"
+              class="pf-footer__social-icon"
+            ></lightning-icon>
+          </a>
+        </li>
+      </template>
+    </ul>
+
+    <a
+      class="pf-footer__credit"
+      href={creditUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="pf-footer__credit-line">{creditText}</span>
+      <template lwc:if={showStats}>
+        <span class="pf-footer__stats">
+          <span class="pf-footer__stat">
+            <svg
+              class="pf-footer__stat-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              ></polygon>
+            </svg>
+            <span class="pf-footer__stat-count" aria-label="GitHub stars"
+              >{starsDisplay}</span
+            >
+          </span>
+          <span class="pf-footer__stat">
+            <svg
+              class="pf-footer__stat-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <line x1="6" y1="3" x2="6" y2="15"></line>
+              <circle cx="18" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M18 9a9 9 0 0 1-9 9"></path>
+            </svg>
+            <span class="pf-footer__stat-count" aria-label="GitHub forks"
+              >{forksDisplay}</span
+            >
+          </span>
+        </span>
+      </template>
+    </a>
+  </footer>
+</template>

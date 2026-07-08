@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Portfolio Footer</masterLabel>
+    <description
+  >Site footer: Designed &amp; Built credit linking to the repo, GitHub star/fork counts that count up on reveal, and mobile social links.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+        name="repoPath"
+        type="String"
+        default="devmdmohiuddin/portfolio"
+        label="GitHub Repo Path"
+        description="owner/repo used for the credit link and live star/fork counts. Leave blank to hide the stats."
+      />
+            <property
+        name="fallbackStars"
+        type="Integer"
+        default="0"
+        label="Fallback Stars"
+        description="Star count shown when the GitHub API can't be reached."
+      />
+            <property
+        name="fallbackForks"
+        type="Integer"
+        default="0"
+        label="Fallback Forks"
+        description="Fork count shown when the GitHub API can't be reached."
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

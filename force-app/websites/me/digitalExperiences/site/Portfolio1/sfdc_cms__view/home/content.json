@@ -56,6 +56,12 @@
                       "definition": "c:portfolioOtherProjects",
                       "id": "f1b8a5e6-9b7c-4eaf-b02d-5c6d7e8f9a0b",
                       "type": "component"
+                    },
+                    {
+                      "attributes": {},
+                      "definition": "c:portfolioContact",
+                      "id": "a2c9b6f7-0c8d-4fb0-a13e-6d7e8f9a0b1c",
+                      "type": "component"
                     }
                   ]
                 }

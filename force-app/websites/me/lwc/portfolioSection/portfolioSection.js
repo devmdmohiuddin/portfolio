@@ -33,6 +33,11 @@ export default class PortfolioSection extends LightningElement {
     return this.sectionId ? `${this.sectionId}-heading` : "pf-section-heading";
   }
 
+  /** Only reference the heading when one is rendered (undefined removes the attribute). */
+  get ariaLabelledBy() {
+    return this.hasHeading ? this.headingId : undefined;
+  }
+
   connectedCallback() {
     this._onNavigate = this.handleSectionNavigate.bind(this);
     window.addEventListener("sectionnavigate", this._onNavigate);
