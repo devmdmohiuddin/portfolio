@@ -50,6 +50,12 @@
                       "definition": "c:portfolioFeaturedProjects",
                       "id": "e0a7f4d5-8a6b-4d9e-af1c-4b5a6d7e8f9a",
                       "type": "component"
+                    },
+                    {
+                      "attributes": {},
+                      "definition": "c:portfolioOtherProjects",
+                      "id": "f1b8a5e6-9b7c-4eaf-b02d-5c6d7e8f9a0b",
+                      "type": "component"
                     }
                   ]
                 }

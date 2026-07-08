@@ -96,10 +96,20 @@ List<Project__c> projects = new List<Project__c>{
     Show_In_Archive__c = false
   ),
   new Project__c(
+    Name = 'REST Integration Patterns',
+    Description__c = 'Named-credential callout patterns with retry, caching, and ' +
+      'typed response wrappers for external APIs.',
+    Type__c = 'Other',
+    Sort_Order__c = 3,
+    GitHub_URL__c = 'https://github.com/devmdmohiuddin',
+    Is_Published__c = true,
+    Show_In_Archive__c = false
+  ),
+  new Project__c(
     Name = 'Legacy VF Dashboard',
     Description__c = 'An early Visualforce reporting dashboard, kept for the archive.',
     Type__c = 'Other',
-    Sort_Order__c = 3,
+    Sort_Order__c = 4,
     Is_Published__c = true,
     Show_In_Archive__c = true
   ),
@@ -107,7 +117,17 @@ List<Project__c> projects = new List<Project__c>{
     Name = 'Trigger Framework Demo',
     Description__c = 'A lightweight, testable Apex trigger handler pattern.',
     Type__c = 'Other',
-    Sort_Order__c = 4,
+    Sort_Order__c = 5,
+    GitHub_URL__c = 'https://github.com/devmdmohiuddin',
+    Is_Published__c = true,
+    Show_In_Archive__c = true
+  ),
+  new Project__c(
+    Name = 'CI/CD with SFDX',
+    Description__c = 'A GitHub Actions pipeline for scratch-org validation and ' +
+      'source deploys with delta detection.',
+    Type__c = 'Other',
+    Sort_Order__c = 6,
     GitHub_URL__c = 'https://github.com/devmdmohiuddin',
     Is_Published__c = true,
     Show_In_Archive__c = true
@@ -126,8 +146,14 @@ Map<String, List<String>> techByProject = new Map<String, List<String>>{
   'Motion Toolkit for LWC' => new List<String>{ 'LWC', 'JavaScript', 'CSS' },
   'Apex Data Seeder' => new List<String>{ 'Apex' },
   'Design Token System' => new List<String>{ 'CSS', 'Design Tokens' },
+  'REST Integration Patterns' => new List<String>{
+    'Apex',
+    'REST',
+    'Named Credentials'
+  },
   'Legacy VF Dashboard' => new List<String>{ 'Visualforce', 'SOQL' },
-  'Trigger Framework Demo' => new List<String>{ 'Apex' }
+  'Trigger Framework Demo' => new List<String>{ 'Apex' },
+  'CI/CD with SFDX' => new List<String>{ 'GitHub Actions', 'SFDX' }
 };
 
 Map<String, Id> projectIdByName = new Map<String, Id>();
