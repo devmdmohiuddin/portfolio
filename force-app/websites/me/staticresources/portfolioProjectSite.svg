@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Portfolio Experience Site screenshot placeholder">
+  <rect width="1200" height="750" fill="#0a192f"/>
+  <rect width="1200" height="56" fill="#112240"/>
+  <circle cx="36" cy="28" r="8" fill="#233554"/>
+  <circle cx="64" cy="28" r="8" fill="#233554"/>
+  <circle cx="92" cy="28" r="8" fill="#233554"/>
+  <rect x="360" y="14" width="480" height="28" rx="14" fill="#233554"/>
+  <text x="120" y="240" font-family="'SF Mono','Fira Code',monospace" font-size="28" fill="#64ffda">Hi, my name is</text>
+  <rect x="120" y="280" width="620" height="52" rx="6" fill="#ccd6f6"/>
+  <rect x="120" y="356" width="520" height="52" rx="6" fill="#8892b0"/>
+  <rect x="120" y="452" width="680" height="18" rx="9" fill="#233554"/>
+  <rect x="120" y="486" width="640" height="18" rx="9" fill="#233554"/>
+  <rect x="120" y="520" width="560" height="18" rx="9" fill="#233554"/>
+  <rect x="120" y="590" width="220" height="56" rx="6" fill="none" stroke="#64ffda" stroke-width="2"/>
+  <text x="230" y="625" text-anchor="middle" font-family="'SF Mono','Fira Code',monospace" font-size="20" fill="#64ffda">Get In Touch</text>
+</svg>

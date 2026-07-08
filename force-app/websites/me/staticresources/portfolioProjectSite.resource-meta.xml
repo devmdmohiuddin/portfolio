@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>image/svg+xml</contentType>
+    <description>Featured-project screenshot placeholder referenced by Project__c.Image_URL__c. Replace with a real screenshot (any image type) to update the card.</description>
+</StaticResource>
