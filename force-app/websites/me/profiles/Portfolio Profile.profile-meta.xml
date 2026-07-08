@@ -4,6 +4,12 @@
         <apexClass>PortfolioController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <!-- Guests need explicit CMDT access to SOQL-query the config record;
+         getInstance() doesn't require it but truncates long text to 255. -->
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Portfolio_Config__mdt</name>
+    </customMetadataTypeAccesses>
     <objectPermissions>
         <object>Experience__c</object>
         <allowCreate>false</allowCreate>

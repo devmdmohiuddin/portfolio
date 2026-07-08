@@ -12,9 +12,41 @@ public with sharing class PortfolioController {
   /**
    * Singleton site configuration. Falls back to an empty record so the UI can
    * bind safely even before the Default CMDT record exists.
+   *
+   * Queried with SOQL (not getInstance) because getInstance truncates long
+   * text area fields such as About__c to 255 characters.
    */
   @AuraEnabled(cacheable=true)
   public static Portfolio_Config__mdt getConfig() {
+    try {
+      List<Portfolio_Config__mdt> configs = [
+        SELECT
+          Full_Name__c,
+          Tagline__c,
+          Intro__c,
+          About__c,
+          Photo_URL__c,
+          Tech_List__c,
+          Email__c,
+          Resume_URL__c,
+          GitHub_URL__c,
+          LinkedIn_URL__c,
+          Twitter_URL__c,
+          Instagram_URL__c,
+          Availability_Message__c
+        FROM Portfolio_Config__mdt
+        WHERE DeveloperName = :CONFIG_RECORD
+        LIMIT 1
+      ];
+      if (!configs.isEmpty()) {
+        return configs[0];
+      }
+    } catch (System.QueryException e) {
+      // Users without CMDT object access (e.g. a guest profile missing the
+      // customMetadataTypeAccesses grant) can't SOQL custom metadata; fall
+      // through to getInstance, which needs no grant but truncates long
+      // text fields to 255 characters.
+    }
     Portfolio_Config__mdt config = Portfolio_Config__mdt.getInstance(
       CONFIG_RECORD
     );

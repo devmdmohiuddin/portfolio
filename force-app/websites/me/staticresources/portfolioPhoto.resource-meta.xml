@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>image/svg+xml</contentType>
+    <description>Profile photo shown in the About section. Referenced by Portfolio_Config__mdt.Photo_URL__c. Replace this placeholder with a real photo (any image type) to update the site.</description>
+</StaticResource>

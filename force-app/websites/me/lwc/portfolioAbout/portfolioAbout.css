@@ -1,0 +1,138 @@
+:host {
+  display: block;
+}
+
+.pf-about {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--pf-space-6, 3rem);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .pf-about {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------- scroll reveal ---------------------------- */
+.pf-about__text,
+.pf-about__photo-wrap,
+.pf-about__tech-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--pf-duration-slow, 0.6s) var(--pf-ease),
+    transform var(--pf-duration-slow, 0.6s) var(--pf-ease);
+  transition-delay: var(--pf-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.pf-about__text.is-visible,
+.pf-about__photo-wrap.is-visible,
+.pf-about__tech-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------ copy -------------------------------- */
+.pf-about__para {
+  margin: 0 0 var(--pf-space-3, 1rem);
+  color: var(--pf-slate, #8892b0);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.6;
+}
+
+/* --------------------------- tech list ------------------------------ */
+.pf-about__tech {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  gap: 0 var(--pf-space-2, 0.5rem);
+  margin: var(--pf-space-4, 1.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf-about__tech-item {
+  position: relative;
+  margin-bottom: var(--pf-space-2, 0.5rem);
+  padding-left: var(--pf-space-4, 1.5rem);
+  color: var(--pf-slate, #8892b0);
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-sm, 0.875rem);
+}
+
+.pf-about__tech-item::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--pf-accent, #64ffda);
+}
+
+/* --------------------- accent-framed photo -------------------------- */
+.pf-about__photo-wrap {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pf-about__photo {
+  position: relative;
+  border-radius: 6px;
+  /* Accent backdrop the grayscale image multiplies against for the tint. */
+  background: var(--pf-accent, #64ffda);
+}
+
+/* Offset accent frame that shifts toward the image on hover. */
+.pf-about__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 2px solid var(--pf-accent, #64ffda);
+  border-radius: 6px;
+  transform: translate(14px, 14px);
+  transition: transform var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-about__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  /* De-saturated + accent-tinted at rest; full color on hover/focus. */
+  filter: grayscale(100%) contrast(1);
+  mix-blend-mode: multiply;
+  transition:
+    filter var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    mix-blend-mode var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    transform var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-about__photo:hover .pf-about__img,
+.pf-about__photo:focus-within .pf-about__img {
+  filter: none;
+  mix-blend-mode: normal;
+  transform: translate(-4px, -4px);
+}
+
+.pf-about__photo:hover::after,
+.pf-about__photo:focus-within::after {
+  transform: translate(10px, 10px);
+}
+
+/* ------------------------- reduced motion --------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pf-about__text,
+  .pf-about__photo-wrap,
+  .pf-about__tech-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pf-about__photo::after,
+  .pf-about__img {
+    transition: none;
+  }
+}

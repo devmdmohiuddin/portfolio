@@ -1,0 +1,40 @@
+<template>
+  <c-portfolio-section
+    section-id="about"
+    section-number="01"
+    section-title="About Me"
+  >
+    <div class="pf-about">
+      <div class="pf-about__text" data-reveal>
+        <template for:each={paragraphs} for:item="para">
+          <p key={para.id} class="pf-about__para">{para.text}</p>
+        </template>
+
+        <template lwc:if={hasTech}>
+          <ul class="pf-about__tech" role="list">
+            <template for:each={techItems} for:item="tech">
+              <li key={tech.id} class="pf-about__tech-item" data-reveal>
+                {tech.name}
+              </li>
+            </template>
+          </ul>
+        </template>
+      </div>
+
+      <template lwc:if={photoUrl}>
+        <div class="pf-about__photo-wrap" data-reveal>
+          <div class="pf-about__photo">
+            <img
+              class="pf-about__img"
+              src={photoUrl}
+              alt={photoAlt}
+              loading="lazy"
+              width="300"
+              height="300"
+            />
+          </div>
+        </div>
+      </template>
+    </div>
+  </c-portfolio-section>
+</template>

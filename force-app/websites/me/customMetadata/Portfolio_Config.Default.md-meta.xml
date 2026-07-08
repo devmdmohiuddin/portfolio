@@ -40,6 +40,31 @@
     >https://themdmohiuddin-dev-ed.develop.my.site.com/me/sfsites/c/resource/portfolioResume</value>
     </values>
     <values>
+        <field>About__c</field>
+        <value
+      xsi:type="xsd:string"
+    >Hello! My name is Mohi and I enjoy building things that live on the web — mostly on the Salesforce platform. My interest in development started with customizing business apps, which quickly turned into a passion for crafting the polished, animated experiences that sit on top of them.
+
+Fast-forward to today, I&apos;ve had the privilege of building data-driven Experience Cloud sites, Lightning Web Components, and Apex services where content lives in records — so the people who own the words never have to wait on a deploy.
+
+Here are a few technologies I&apos;ve been working with recently:</value>
+    </values>
+    <values>
+        <field>Photo_URL__c</field>
+        <value
+      xsi:type="xsd:string"
+    >https://themdmohiuddin-dev-ed.develop.my.site.com/me/sfsites/c/resource/portfolioPhoto</value>
+    </values>
+    <values>
+        <field>Tech_List__c</field>
+        <value xsi:type="xsd:string">Apex
+Lightning Web Components
+JavaScript (ES6+)
+SOQL &amp; SOSL
+Experience Cloud (LWR)
+Salesforce Flow</value>
+    </values>
+    <values>
         <field>Availability_Message__c</field>
         <value
       xsi:type="xsd:string"
