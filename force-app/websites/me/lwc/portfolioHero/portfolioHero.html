@@ -1,0 +1,32 @@
+<template>
+  <section
+    class="pf-hero"
+    id="top"
+    data-loaded={loaded}
+    aria-label="Introduction"
+  >
+    <div class="pf-hero__inner">
+      <p class="pf-hero__greeting" style="--pf-delay: 100ms">
+        <span class="pf-hero__greeting-text">{greeting}</span>
+      </p>
+
+      <template lwc:if={fullName}>
+        <h1 class="pf-hero__name" style="--pf-delay: 200ms">{fullName}</h1>
+      </template>
+
+      <template lwc:if={tagline}>
+        <h2 class="pf-hero__tagline" style="--pf-delay: 300ms">{tagline}</h2>
+      </template>
+
+      <template lwc:if={intro}>
+        <p class="pf-hero__intro" style="--pf-delay: 400ms">{intro}</p>
+      </template>
+
+      <template lwc:if={ctaHref}>
+        <div class="pf-hero__cta-wrap" style="--pf-delay: 500ms">
+          <a class="pf-hero__cta" href={ctaHref}>Get In Touch</a>
+        </div>
+      </template>
+    </div>
+  </section>
+</template>

@@ -29,10 +29,15 @@
           </template>
         </ol>
 
-        <template lwc:if={resumeUrl}>
+        <c-theme-toggle
+          class="pf-nav__toggle"
+          style={toggleStyle}
+        ></c-theme-toggle>
+
+        <template lwc:if={resumeHref}>
           <a
             class="pf-nav__resume"
-            href={resumeUrl}
+            href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
             style={resumeStyle}

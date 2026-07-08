@@ -1,0 +1,78 @@
+:host {
+  display: inline-flex;
+}
+
+.pf-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--pf-bg-lightest, #233554);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pf-accent, #64ffda);
+  cursor: pointer;
+  transition:
+    color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    border-color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    background-color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    transform var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-theme-toggle:hover,
+.pf-theme-toggle:focus-visible {
+  border-color: var(--pf-accent, #64ffda);
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* The two icons stack; the active one rotates/scales into view. */
+.pf-theme-toggle__icon {
+  position: relative;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+
+.pf-theme-toggle__sun,
+.pf-theme-toggle__moon {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity var(--pf-duration, 0.4s) var(--pf-ease),
+    transform var(--pf-duration, 0.4s) var(--pf-ease);
+}
+
+/* Dark theme (default): show the moon, tuck the sun away. */
+.pf-theme-toggle__moon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+.pf-theme-toggle__sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.4);
+}
+
+/* Light theme: swap — sun in, moon out. Driven by the component's own state
+   (the same value it writes to the document root's data-theme). */
+.pf-theme-toggle--light .pf-theme-toggle__moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.4);
+}
+
+.pf-theme-toggle--light .pf-theme-toggle__sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-theme-toggle,
+  .pf-theme-toggle__sun,
+  .pf-theme-toggle__moon {
+    transition: none;
+  }
+}

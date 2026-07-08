@@ -1,4 +1,5 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, wire } from "lwc";
+import getConfig from "@salesforce/apex/PortfolioController.getConfig";
 import { prefersReducedMotion } from "c/portfolioMotion";
 
 const DEFAULT_LINKS = [
@@ -22,12 +23,32 @@ const SCROLL_THRESHOLD = 40;
 export default class PortfolioNav extends LightningElement {
   /** Monogram shown in the logo (defaults to "MM"). */
   @api initials = "MM";
-  /** URL the Resume button links to (hidden when empty). */
+  /**
+   * Optional Resume URL override. When blank (the default) the button falls
+   * back to the config record's Resume URL, keeping the link data-driven.
+   */
   @api resumeUrl;
 
+  config;
   loaded = false;
   scrolled = false;
   _onScroll;
+
+  @wire(getConfig)
+  wiredConfig({ data }) {
+    if (data) {
+      this.config = data;
+    }
+  }
+
+  /**
+   * Effective Resume link. The config record is the source of truth; the
+   * builder-set `resumeUrl` is a fallback for environments where the config
+   * value isn't set yet. Hidden when neither is present.
+   */
+  get resumeHref() {
+    return this.config?.Resume_URL__c || this.resumeUrl || undefined;
+  }
 
   get links() {
     return DEFAULT_LINKS.map((link, i) => ({
@@ -38,8 +59,12 @@ export default class PortfolioNav extends LightningElement {
     }));
   }
 
-  get resumeStyle() {
+  get toggleStyle() {
     return `--pf-delay: ${this.delayFor(DEFAULT_LINKS.length + 1)}`;
+  }
+
+  get resumeStyle() {
+    return `--pf-delay: ${this.delayFor(DEFAULT_LINKS.length + 2)}`;
   }
 
   get headerClass() {

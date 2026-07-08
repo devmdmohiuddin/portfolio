@@ -34,6 +34,12 @@
     >https://www.linkedin.com/in/themdmohiuddin/</value>
     </values>
     <values>
+        <field>Resume_URL__c</field>
+        <value
+      xsi:type="xsd:string"
+    >https://themdmohiuddin-dev-ed.develop.my.site.com/me/sfsites/c/resource/portfolioResume</value>
+    </values>
+    <values>
         <field>Availability_Message__c</field>
         <value
       xsi:type="xsd:string"

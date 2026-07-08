@@ -130,6 +130,7 @@
 /* --------------------- staggered on-load entrance ------------------- */
 .pf-nav__logo,
 .pf-nav__item,
+.pf-nav__toggle,
 .pf-nav__resume {
   opacity: 0;
   transform: translateY(-16px);
@@ -137,6 +138,7 @@
 
 .pf-header[data-loaded="true"] .pf-nav__logo,
 .pf-header[data-loaded="true"] .pf-nav__item,
+.pf-header[data-loaded="true"] .pf-nav__toggle,
 .pf-header[data-loaded="true"] .pf-nav__resume {
   animation: pf-nav-drop var(--pf-duration-slow, 0.6s) var(--pf-ease) forwards;
   animation-delay: var(--pf-delay, 0ms);
@@ -159,6 +161,7 @@
 @media (prefers-reduced-motion: reduce) {
   .pf-nav__logo,
   .pf-nav__item,
+  .pf-nav__toggle,
   .pf-nav__resume {
     opacity: 1;
     transform: none;
