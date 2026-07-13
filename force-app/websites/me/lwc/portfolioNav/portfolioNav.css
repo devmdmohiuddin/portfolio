@@ -3,14 +3,21 @@
 }
 
 .pf-header {
-  position: sticky;
+  /* Fixed (not sticky): in the Experience Cloud split-region theme layout the
+     nav lives in a separate header region from the page content, so `sticky`
+     can't pin it over the content. Fixed floats it above everything and lets
+     the scroll-direction show/hide logic reveal it on scroll-up. */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: var(--pf-z-nav, 100);
   width: 100%;
-  background: var(--pf-bg-overlay, rgba(2, 12, 27, 0.7));
+  background: var(--pf-bg-overlay);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition:
+    transform var(--pf-duration) var(--pf-ease),
     height var(--pf-duration) var(--pf-ease),
     box-shadow var(--pf-duration) var(--pf-ease),
     background-color var(--pf-duration) var(--pf-ease);
@@ -18,6 +25,11 @@
 
 .pf-header--scrolled {
   box-shadow: 0 10px 30px -10px var(--pf-shadow, rgba(2, 12, 27, 0.7));
+}
+
+/* Hide on scroll-down, reveal on scroll-up (state driven from JS). */
+.pf-header--hidden {
+  transform: translateY(-100%);
 }
 
 .pf-nav {
@@ -40,29 +52,62 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 2px solid var(--pf-accent, #64ffda);
-  border-radius: 6px;
-  color: var(--pf-accent, #64ffda);
   text-decoration: none;
-  font-family: var(--pf-font-mono, monospace);
-  font-weight: 700;
-  transition:
-    background-color var(--pf-duration-fast) var(--pf-ease),
-    transform var(--pf-duration-fast) var(--pf-ease);
+  outline: none;
+  transition: transform var(--pf-duration-fast) var(--pf-ease);
 }
 
 .pf-nav__logo:hover,
 .pf-nav__logo:focus-visible {
-  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
-  transform: translateY(-2px);
-  outline: none;
+  transform: translateY(-3px);
+}
+
+.pf-nav__logo-hex {
+  display: block;
+  overflow: visible;
+}
+
+/* Faint full-perimeter track sits under the accent outline. */
+.pf-nav__logo-track {
+  fill: none;
+  stroke: var(--pf-accent, #64ffda);
+  stroke-width: 4;
+  opacity: 0.25;
+}
+
+/* The accent hexagon outline; redraws itself on hover. */
+.pf-nav__logo-draw {
+  fill: none;
+  stroke: var(--pf-accent, #64ffda);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  /* Perimeter of the hexagon (side = 48 → 6 × 48 = 288). */
+  stroke-dasharray: 288;
+  stroke-dashoffset: 0;
+  transition: fill var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-nav__logo:hover .pf-nav__logo-draw,
+.pf-nav__logo:focus-visible .pf-nav__logo-draw {
+  fill: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  animation: pf-hex-draw var(--pf-duration-slow, 0.6s) var(--pf-ease);
+}
+
+@keyframes pf-hex-draw {
+  from {
+    stroke-dashoffset: 288;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .pf-nav__logo-mark {
-  font-size: var(--pf-fs-sm, 0.875rem);
-  letter-spacing: 0.05em;
+  fill: var(--pf-accent, #64ffda);
+  font-family: var(--pf-font-mono, monospace);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.02em;
 }
 
 /* ------------------------------- menu ------------------------------- */
@@ -82,25 +127,31 @@
   counter-reset: none;
 }
 
+/* Colors use !important so the site's DXP link styling (a { color:
+   var(--dxp-g-brand) } — a saturated blue) can't override the label text. */
 .pf-nav__link {
   display: inline-flex;
   align-items: baseline;
   gap: var(--pf-space-1, 0.25rem);
-  color: var(--pf-slate-lightest, #ccd6f6);
   text-decoration: none;
   font-size: var(--pf-fs-sm, 0.875rem);
+  transition: color var(--pf-duration-fast) var(--pf-ease);
+}
+
+.pf-nav__link-label {
+  color: var(--pf-slate-lightest, #ccd6f6) !important;
   transition: color var(--pf-duration-fast) var(--pf-ease);
 }
 
 .pf-nav__link-number {
   font-family: var(--pf-font-mono, monospace);
   font-size: var(--pf-fs-xs, 0.75rem);
-  color: var(--pf-accent, #64ffda);
+  color: var(--pf-accent, #64ffda) !important;
 }
 
-.pf-nav__link:hover,
-.pf-nav__link:focus-visible {
-  color: var(--pf-accent, #64ffda);
+.pf-nav__link:hover .pf-nav__link-label,
+.pf-nav__link:focus-visible .pf-nav__link-label {
+  color: var(--pf-accent, #64ffda) !important;
   outline: none;
 }
 
@@ -110,7 +161,7 @@
   padding: 0.6rem 1rem;
   border: 1px solid var(--pf-accent, #64ffda);
   border-radius: 6px;
-  color: var(--pf-accent, #64ffda);
+  color: var(--pf-accent, #64ffda) !important;
   text-decoration: none;
   font-family: var(--pf-font-mono, monospace);
   font-size: var(--pf-fs-xs, 0.75rem);
@@ -165,6 +216,11 @@
   .pf-nav__resume {
     opacity: 1;
     transform: none;
+    animation: none;
+  }
+
+  .pf-nav__logo:hover .pf-nav__logo-draw,
+  .pf-nav__logo:focus-visible .pf-nav__logo-draw {
     animation: none;
   }
 }

@@ -10,6 +10,9 @@ const DEFAULT_LINKS = [
 ];
 
 const SCROLL_THRESHOLD = 40;
+// Only start hiding the bar once it has fully scrolled past (≈ its height),
+// so a small jitter near the top never yanks it away.
+const HIDE_AFTER = 120;
 
 /**
  * portfolioNav — sticky top navigation.
@@ -32,6 +35,8 @@ export default class PortfolioNav extends LightningElement {
   config;
   loaded = false;
   scrolled = false;
+  hidden = false;
+  _lastScrollY = 0;
   _onScroll;
 
   @wire(getConfig)
@@ -68,7 +73,13 @@ export default class PortfolioNav extends LightningElement {
   }
 
   get headerClass() {
-    return `pf-header${this.scrolled ? " pf-header--scrolled" : ""}`;
+    return [
+      "pf-header",
+      this.scrolled ? "pf-header--scrolled" : "",
+      this.hidden ? "pf-header--hidden" : ""
+    ]
+      .filter(Boolean)
+      .join(" ");
   }
 
   delayFor(index) {
@@ -79,6 +90,13 @@ export default class PortfolioNav extends LightningElement {
   connectedCallback() {
     this._onScroll = this.handleScroll.bind(this);
     window.addEventListener("scroll", this._onScroll, { passive: true });
+    // Experience Cloud LWR often scrolls an inner container rather than the
+    // window. Scroll events don't bubble, so listen in the capture phase on
+    // the document to catch scrolling from whichever element actually scrolls.
+    document.addEventListener("scroll", this._onScroll, {
+      passive: true,
+      capture: true
+    });
   }
 
   renderedCallback() {
@@ -95,14 +113,58 @@ export default class PortfolioNav extends LightningElement {
   disconnectedCallback() {
     if (this._onScroll) {
       window.removeEventListener("scroll", this._onScroll);
+      document.removeEventListener("scroll", this._onScroll, { capture: true });
     }
   }
 
-  handleScroll() {
-    const isScrolled = window.scrollY > SCROLL_THRESHOLD;
+  /**
+   * Current vertical scroll offset. Reads the scrolling element when the event
+   * comes from an inner container (LWR), else falls back to the window/document.
+   */
+  scrollTopFrom(event) {
+    const target = event && event.target;
+    if (
+      target &&
+      target.nodeType === 1 &&
+      target !== document.documentElement &&
+      target !== document.body &&
+      typeof target.scrollTop === "number"
+    ) {
+      return target.scrollTop;
+    }
+    return (
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0
+    );
+  }
+
+  handleScroll(event) {
+    const y = this.scrollTopFrom(event);
+
+    // Shrink + shadow once the page moves off the very top.
+    const isScrolled = y > SCROLL_THRESHOLD;
     if (isScrolled !== this.scrolled) {
       this.scrolled = isScrolled;
     }
+
+    // Hide the bar when scrolling down past its height; bring it straight back
+    // the moment the user scrolls up (or returns near the top).
+    const scrollingDown = y > this._lastScrollY;
+    let nextHidden = this.hidden;
+    if (y <= HIDE_AFTER) {
+      nextHidden = false;
+    } else if (scrollingDown) {
+      nextHidden = true;
+    } else {
+      nextHidden = false;
+    }
+    if (nextHidden !== this.hidden) {
+      this.hidden = nextHidden;
+    }
+
+    this._lastScrollY = y;
   }
 
   handleNavClick(event) {

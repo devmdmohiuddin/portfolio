@@ -46,25 +46,25 @@
     transform var(--pf-duration, 0.4s) var(--pf-ease);
 }
 
-/* Dark theme (default): show the moon, tuck the sun away. */
-.pf-theme-toggle__moon {
+/* Dark theme (default): show the light (sun) icon, tuck the moon away. */
+.pf-theme-toggle__sun {
   opacity: 1;
   transform: rotate(0) scale(1);
 }
 
-.pf-theme-toggle__sun {
+.pf-theme-toggle__moon {
   opacity: 0;
   transform: rotate(-90deg) scale(0.4);
 }
 
-/* Light theme: swap — sun in, moon out. Driven by the component's own state
-   (the same value it writes to the document root's data-theme). */
-.pf-theme-toggle--light .pf-theme-toggle__moon {
+/* Light theme: swap — dark (moon) icon in, sun out. Driven by the component's
+   own state (the same value it writes to the document root's data-theme). */
+.pf-theme-toggle--light .pf-theme-toggle__sun {
   opacity: 0;
   transform: rotate(90deg) scale(0.4);
 }
 
-.pf-theme-toggle--light .pf-theme-toggle__sun {
+.pf-theme-toggle--light .pf-theme-toggle__moon {
   opacity: 1;
   transform: rotate(0) scale(1);
 }

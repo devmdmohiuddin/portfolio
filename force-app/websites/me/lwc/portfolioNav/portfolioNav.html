@@ -9,7 +9,31 @@
         data-target="top"
         style="--pf-delay: 0ms"
       >
-        <span class="pf-nav__logo-mark">{initials}</span>
+        <svg
+          class="pf-nav__logo-hex"
+          viewBox="0 0 100 100"
+          width="44"
+          height="44"
+          aria-hidden="true"
+        >
+          <polygon
+            class="pf-nav__logo-track"
+            points="50,2 91.57,26 91.57,74 50,98 8.43,74 8.43,26"
+          ></polygon>
+          <polygon
+            class="pf-nav__logo-draw"
+            points="50,2 91.57,26 91.57,74 50,98 8.43,74 8.43,26"
+          ></polygon>
+          <text
+            class="pf-nav__logo-mark"
+            x="50"
+            y="52"
+            text-anchor="middle"
+            dominant-baseline="central"
+          >
+            {initials}
+          </text>
+        </svg>
       </a>
 
       <div class="pf-nav__menu">

@@ -54,6 +54,38 @@ const TOKENS = `
   --pf-accent-tint-strong: rgba(10, 143, 116, 0.15);
   --pf-shadow: rgba(99, 114, 145, 0.25);
 }
+/* Bridge the LWR "Build Your Own" theme (DXP) variables to our tokens. The
+   branding set paints the site substrate/wrappers with --dxp-g-root (#ffffff)
+   and neutral greys (#ebebeb) that sit OUTSIDE our shadow trees — invisible on
+   a light page but showing as white/grey patches once the page goes dark. We
+   remap them to our theme background (and brand/link to our accent) so the
+   whole page chrome follows dark/light. !important is needed because the
+   branding stylesheet also declares these on :root. */
+:root {
+  --dxp-g-root: var(--pf-bg) !important;
+  --dxp-g-root-1: var(--pf-bg) !important;
+  --dxp-g-root-2: var(--pf-bg) !important;
+  --dxp-g-neutral: var(--pf-bg) !important;
+  --dxp-g-neutral-1: var(--pf-bg) !important;
+  --dxp-g-neutral-2: var(--pf-bg) !important;
+  --dxp-g-root-contrast: var(--pf-slate);
+  --dxp-g-brand: var(--pf-accent);
+  --dxp-g-link: var(--pf-accent);
+}
+/* The BYO "scoped header & footer" theme layout wraps our nav/rails/footer in
+   framework elements that paint their OWN light background (around the bar),
+   which shows as a grey band in dark mode. These wrappers live outside our
+   shadow trees, so neutralize them here and let the themed body show through.
+   The content region has no such wrapper, which is why only the header/footer
+   area was affected. */
+community_byo-scoped-header-and-footer,
+[class*="scoped-header-and-footer"],
+.cb-scoped-header,
+.cb-scoped-footer,
+[data-f6-region],
+.comm-section-container {
+  background-color: transparent !important;
+}
 :root {
   --pf-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
