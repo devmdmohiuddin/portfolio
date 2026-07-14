@@ -46,10 +46,11 @@
                     {
                       "attributes": {
                         "githubUrl": "https://github.com/devmdmohiuddin",
+                        "trailheadUrl": "",
                         "linkedinUrl": "https://www.linkedin.com/in/themdmohiuddin/",
                         "twitterUrl": "",
-                        "instagramUrl": "",
-                        "email": "shuvobh1998@gmail.com"
+                        "facebookUrl": "",
+                        "email": "themdmohiuddin@gmail.com"
                       },
                       "definition": "c:portfolioRails",
                       "id": "00804843-7033-45d0-ac47-80e135988a4c",

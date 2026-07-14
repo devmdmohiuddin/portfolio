@@ -23,11 +23,13 @@ public with sharing class PortfolioController {
         SELECT
           Full_Name__c,
           Tagline__c,
+          Roles__c,
           Intro__c,
           About__c,
           Photo_URL__c,
           Tech_List__c,
           Email__c,
+          Notification_Email__c,
           Resume_URL__c,
           GitHub_URL__c,
           LinkedIn_URL__c,

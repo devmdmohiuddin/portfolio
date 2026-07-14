@@ -1,0 +1,144 @@
+<template>
+  <template lwc:if={isOpen}>
+    <div
+      class="pf-dialog-backdrop"
+      data-open={renderedOpen}
+      onclick={handleBackdrop}
+    >
+      <div
+        class="pf-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pf-dialog-title"
+      >
+        <button
+          class="pf-dialog__close"
+          type="button"
+          aria-label="Close"
+          onclick={close}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+        </button>
+
+        <template lwc:if={isSuccess}>
+          <div class="pf-dialog__success">
+            <span class="pf-dialog__check" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="28"
+                height="28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <h2 class="pf-dialog__title">Message sent</h2>
+            <p class="pf-dialog__subtitle">
+              Thanks{successName} — I'll get back to you soon.
+            </p>
+            <button class="pf-dialog__submit" type="button" onclick={close}>
+              Close
+            </button>
+          </div>
+        </template>
+
+        <template lwc:else>
+          <p class="pf-dialog__overline">Get In Touch</p>
+          <h2 id="pf-dialog-title" class="pf-dialog__title">
+            Send me a message
+          </h2>
+          <p class="pf-dialog__subtitle">
+            Have a question, a role, or just want to say hello? Drop me a note
+            and I'll reply.
+          </p>
+
+          <form class="pf-dialog__form" onsubmit={handleSubmit}>
+            <div class="pf-dialog__field">
+              <label class="pf-dialog__label" for="pf-name">Name</label>
+              <input
+                id="pf-name"
+                class="pf-dialog__input"
+                name="name"
+                type="text"
+                autocomplete="name"
+                value={form.name}
+                oninput={handleInput}
+                required
+              />
+            </div>
+
+            <div class="pf-dialog__row">
+              <div class="pf-dialog__field">
+                <label class="pf-dialog__label" for="pf-email">Email</label>
+                <input
+                  id="pf-email"
+                  class="pf-dialog__input"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  value={form.email}
+                  oninput={handleInput}
+                  required
+                />
+              </div>
+              <div class="pf-dialog__field">
+                <label class="pf-dialog__label" for="pf-phone">
+                  Phone <span class="pf-dialog__optional">(optional)</span>
+                </label>
+                <input
+                  id="pf-phone"
+                  class="pf-dialog__input"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  value={form.phone}
+                  oninput={handleInput}
+                />
+              </div>
+            </div>
+
+            <div class="pf-dialog__field">
+              <label class="pf-dialog__label" for="pf-message">Message</label>
+              <textarea
+                id="pf-message"
+                class="pf-dialog__input pf-dialog__textarea"
+                name="message"
+                rows="4"
+                oninput={handleInput}
+                required
+              ></textarea>
+            </div>
+
+            <template lwc:if={errorMessage}>
+              <p class="pf-dialog__error" role="alert">{errorMessage}</p>
+            </template>
+
+            <button
+              class="pf-dialog__submit"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {submitLabel}
+            </button>
+          </form>
+        </template>
+      </div>
+    </div>
+  </template>
+</template>

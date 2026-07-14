@@ -133,7 +133,8 @@
   display: inline-flex;
   align-items: baseline;
   gap: var(--pf-space-1, 0.25rem);
-  text-decoration: none;
+  /* !important also blocks the DXP hover/focus underline on links. */
+  text-decoration: none !important;
   font-size: var(--pf-fs-sm, 0.875rem);
   transition: color var(--pf-duration-fast) var(--pf-ease);
 }
@@ -162,7 +163,7 @@
   border: 1px solid var(--pf-accent, #64ffda);
   border-radius: 6px;
   color: var(--pf-accent, #64ffda) !important;
-  text-decoration: none;
+  text-decoration: none !important;
   font-family: var(--pf-font-mono, monospace);
   font-size: var(--pf-fs-xs, 0.75rem);
   line-height: 1;

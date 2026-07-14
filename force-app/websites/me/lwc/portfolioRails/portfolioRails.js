@@ -10,8 +10,12 @@ import { prefersReducedMotion } from "c/portfolioMotion";
  */
 export default class PortfolioRails extends LightningElement {
   @api githubUrl;
+  @api trailheadUrl;
   @api linkedinUrl;
   @api twitterUrl;
+  @api facebookUrl;
+  // Retained (unused) so the published component's property can't be "removed",
+  // which the platform blocks while it's referenced in a live instance.
   @api instagramUrl;
   @api email;
 
@@ -19,34 +23,23 @@ export default class PortfolioRails extends LightningElement {
 
   get socials() {
     const defs = [
-      {
-        id: "github",
-        label: "GitHub",
-        icon: "utility:socialshare",
-        url: this.githubUrl
-      },
-      {
-        id: "linkedin",
-        label: "LinkedIn",
-        icon: "utility:company",
-        url: this.linkedinUrl
-      },
-      {
-        id: "twitter",
-        label: "Twitter",
-        icon: "utility:chat",
-        url: this.twitterUrl
-      },
-      {
-        id: "instagram",
-        label: "Instagram",
-        icon: "utility:photo",
-        url: this.instagramUrl
-      }
+      { id: "github", label: "GitHub", url: this.githubUrl },
+      { id: "trailhead", label: "Trailhead", url: this.trailheadUrl },
+      { id: "linkedin", label: "LinkedIn", url: this.linkedinUrl },
+      { id: "twitter", label: "Twitter", url: this.twitterUrl },
+      { id: "facebook", label: "Facebook", url: this.facebookUrl }
     ];
     return defs
       .filter((s) => s.url)
-      .map((s, i) => ({ ...s, style: `--pf-delay: ${this.delayFor(i)}` }));
+      .map((s, i) => ({
+        ...s,
+        isGithub: s.id === "github",
+        isTrailhead: s.id === "trailhead",
+        isLinkedin: s.id === "linkedin",
+        isTwitter: s.id === "twitter",
+        isFacebook: s.id === "facebook",
+        style: `--pf-delay: ${this.delayFor(i)}`
+      }));
   }
 
   get mailto() {

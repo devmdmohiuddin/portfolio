@@ -11,17 +11,29 @@
     </values>
     <values>
         <field>Tagline__c</field>
-        <value xsi:type="xsd:string">I build things for the web.</value>
+        <value
+      xsi:type="xsd:string"
+    >I build reliable, scalable solutions on the Salesforce platform.</value>
+    </values>
+    <values>
+        <field>Roles__c</field>
+        <value
+      xsi:type="xsd:string"
+    >DevOps Engineer|Senior Salesforce Technical Consultant</value>
     </values>
     <values>
         <field>Intro__c</field>
         <value
       xsi:type="xsd:string"
-    >I&apos;m a Salesforce developer who enjoys building accessible, data-driven digital experiences. I focus on clean architecture, motion, and turning content into records so non-devs can keep the site fresh.</value>
+    >I&apos;m a Senior Salesforce Technical Consultant and DevOps engineer who builds reliable, scalable solutions on the Salesforce platform. I turn complex business needs into clean, thoughtfully designed experiences — and ship them with confidence through automated, dependable delivery.</value>
     </values>
     <values>
         <field>Email__c</field>
-        <value xsi:type="xsd:string">shuvobh1998@gmail.com</value>
+        <value xsi:type="xsd:string">themdmohiuddin@gmail.com</value>
+    </values>
+    <values>
+        <field>Notification_Email__c</field>
+        <value xsi:type="xsd:string">themdmohiuddin@gmail.com</value>
     </values>
     <values>
         <field>GitHub_URL__c</field>

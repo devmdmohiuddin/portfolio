@@ -12,8 +12,10 @@
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
             <property name="githubUrl" type="String" label="GitHub URL" />
+            <property name="trailheadUrl" type="String" label="Trailhead URL" />
             <property name="linkedinUrl" type="String" label="LinkedIn URL" />
             <property name="twitterUrl" type="String" label="Twitter URL" />
+            <property name="facebookUrl" type="String" label="Facebook URL" />
             <property name="instagramUrl" type="String" label="Instagram URL" />
             <property
         name="email"

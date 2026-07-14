@@ -1,0 +1,234 @@
+:host {
+  display: contents;
+}
+
+/* ------------------------------ backdrop ----------------------------- */
+.pf-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--pf-z-modal, 1000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pf-space-4, 1.5rem);
+  background: rgba(2, 12, 27, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity var(--pf-duration, 0.4s) var(--pf-ease);
+}
+
+.pf-dialog-backdrop[data-open="true"] {
+  opacity: 1;
+}
+
+/* ------------------------------- dialog ------------------------------ */
+.pf-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  border: 1px solid var(--pf-bg-lightest, #233554);
+  border-radius: 10px;
+  background: var(--pf-bg-light, #112240);
+  box-shadow: 0 20px 60px -15px rgba(2, 12, 27, 0.6);
+  transform: translateY(16px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform var(--pf-duration, 0.4s) var(--pf-ease),
+    opacity var(--pf-duration, 0.4s) var(--pf-ease);
+}
+
+.pf-dialog-backdrop[data-open="true"] .pf-dialog {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* -------------------------------- close ------------------------------ */
+.pf-dialog__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pf-slate, #8892b0);
+  cursor: pointer;
+  transition:
+    color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    background-color var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-dialog__close:hover,
+.pf-dialog__close:focus-visible {
+  color: var(--pf-accent, #64ffda);
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  outline: none;
+}
+
+/* -------------------------------- header ----------------------------- */
+.pf-dialog__overline {
+  margin: 0 0 0.5rem;
+  color: var(--pf-accent, #64ffda);
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-sm, 0.875rem);
+}
+
+.pf-dialog__title {
+  margin: 0 0 0.5rem;
+  color: var(--pf-heading, #ccd6f6);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 700;
+}
+
+.pf-dialog__subtitle {
+  margin: 0 0 1.5rem;
+  color: var(--pf-slate, #8892b0);
+  font-size: var(--pf-fs-base, 1rem);
+  line-height: 1.5;
+}
+
+/* -------------------------------- form ------------------------------- */
+.pf-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pf-dialog__row {
+  display: flex;
+  gap: 1rem;
+}
+
+.pf-dialog__field {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.pf-dialog__label {
+  color: var(--pf-slate-light, #a8b2d1);
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-xs, 0.75rem);
+}
+
+.pf-dialog__optional {
+  color: var(--pf-slate, #8892b0);
+  text-transform: none;
+}
+
+.pf-dialog__input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--pf-bg-lightest, #233554);
+  border-radius: 6px;
+  background: var(--pf-bg, #0a192f);
+  color: var(--pf-slate-lightest, #ccd6f6);
+  font-family: var(--pf-font-sans, sans-serif);
+  font-size: var(--pf-fs-base, 1rem);
+  transition:
+    border-color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    box-shadow var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-dialog__input::placeholder {
+  color: var(--pf-slate, #8892b0);
+}
+
+.pf-dialog__input:focus {
+  border-color: var(--pf-accent, #64ffda);
+  box-shadow: 0 0 0 3px var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  outline: none;
+}
+
+.pf-dialog__textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+/* -------------------------------- error ------------------------------ */
+.pf-dialog__error {
+  margin: 0;
+  color: #ff6b6b;
+  font-size: var(--pf-fs-sm, 0.875rem);
+}
+
+/* ------------------------------- submit ------------------------------ */
+.pf-dialog__submit {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid var(--pf-accent, #64ffda);
+  border-radius: 6px;
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+  color: var(--pf-accent, #64ffda);
+  font-family: var(--pf-font-mono, monospace);
+  font-size: var(--pf-fs-sm, 0.875rem);
+  cursor: pointer;
+  transition:
+    background-color var(--pf-duration-fast, 0.2s) var(--pf-ease),
+    transform var(--pf-duration-fast, 0.2s) var(--pf-ease);
+}
+
+.pf-dialog__submit:hover:not(:disabled),
+.pf-dialog__submit:focus-visible:not(:disabled) {
+  background: var(--pf-accent-tint-strong, rgba(100, 255, 218, 0.15));
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.pf-dialog__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ------------------------------- success ----------------------------- */
+.pf-dialog__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.pf-dialog__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 0.25rem;
+  border-radius: 50%;
+  color: var(--pf-accent, #64ffda);
+  background: var(--pf-accent-tint, rgba(100, 255, 218, 0.1));
+}
+
+.pf-dialog__success .pf-dialog__submit {
+  align-self: center;
+  margin-top: 1rem;
+}
+
+/* ----------------------------- responsive ---------------------------- */
+@media (max-width: 480px) {
+  .pf-dialog__row {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-dialog-backdrop,
+  .pf-dialog {
+    transition: none;
+  }
+}

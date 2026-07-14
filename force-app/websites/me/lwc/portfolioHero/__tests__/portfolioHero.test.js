@@ -33,35 +33,51 @@ describe("c-portfolio-hero", () => {
     return element;
   }
 
-  it("renders name, tagline and intro from config", async () => {
+  it("renders name and intro from config", async () => {
     const element = createComponent();
     getConfigAdapter.emit(CONFIG);
     await Promise.resolve();
 
     const name = element.shadowRoot.querySelector(".pf-hero__name");
-    const tagline = element.shadowRoot.querySelector(".pf-hero__tagline");
     const intro = element.shadowRoot.querySelector(".pf-hero__intro");
 
     expect(name.textContent).toBe(CONFIG.Full_Name__c);
-    expect(tagline.textContent).toBe(CONFIG.Tagline__c);
     expect(intro.textContent).toBe(CONFIG.Intro__c);
   });
 
-  it("wires the CTA to a mailto for the config email", async () => {
+  it("renders the roles line, joined under reduced motion", async () => {
+    const element = createComponent();
+    getConfigAdapter.emit({
+      ...CONFIG,
+      Roles__c: "Software Engineer|DevOps Engineer|Consultant"
+    });
+    await Promise.resolve();
+
+    const tagline = element.shadowRoot.querySelector(".pf-hero__tagline");
+    expect(tagline.textContent).toBe(
+      "Software Engineer · DevOps Engineer · Consultant"
+    );
+  });
+
+  it("falls back to the tagline when no roles are set", async () => {
     const element = createComponent();
     getConfigAdapter.emit(CONFIG);
     await Promise.resolve();
 
-    const cta = element.shadowRoot.querySelector(".pf-hero__cta");
-    expect(cta.getAttribute("href")).toBe(`mailto:${CONFIG.Email__c}`);
+    const tagline = element.shadowRoot.querySelector(".pf-hero__tagline");
+    expect(tagline.textContent).toBe(CONFIG.Tagline__c);
   });
 
-  it("hides the CTA when no email is configured", async () => {
+  it("opens the contact dialog when Get In Touch is clicked", async () => {
     const element = createComponent();
-    getConfigAdapter.emit({ Full_Name__c: "Someone" });
+    getConfigAdapter.emit(CONFIG);
     await Promise.resolve();
 
-    expect(element.shadowRoot.querySelector(".pf-hero__cta")).toBeNull();
+    const dialog = element.shadowRoot.querySelector("c-contact-dialog");
+    dialog.open = jest.fn();
+
+    element.shadowRoot.querySelector(".pf-hero__cta").click();
+    expect(dialog.open).toHaveBeenCalled();
   });
 
   it("always renders the greeting line", async () => {
@@ -72,6 +88,6 @@ describe("c-portfolio-hero", () => {
     const greeting = element.shadowRoot.querySelector(
       ".pf-hero__greeting-text"
     );
-    expect(greeting.textContent).toBe("Hi, my name is.");
+    expect(greeting.textContent).toBe("Hi, my name is");
   });
 });

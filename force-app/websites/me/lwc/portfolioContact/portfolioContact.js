@@ -32,8 +32,11 @@ export default class PortfolioContact extends LightningElement {
     }
   }
 
-  get mailto() {
-    return this.email ? `mailto:${this.email}` : undefined;
+  openDialog() {
+    const dialog = this.template.querySelector("c-contact-dialog");
+    if (dialog) {
+      dialog.open();
+    }
   }
 
   renderedCallback() {

@@ -27,34 +27,10 @@
   font-weight: 400;
 }
 
-/* Terminal-style typewriter: the text width animates from 0 to its full
-   character count once the hero has loaded; a caret blinks alongside. */
+/* Greeting shows as-is (no typewriter) — the typing effect now lives on the
+   rotating role line below. */
 .pf-hero__greeting-text {
   display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  vertical-align: bottom;
-  border-right: 2px solid var(--pf-accent, #64ffda);
-  width: 0;
-}
-
-.pf-hero[data-loaded="true"] .pf-hero__greeting-text {
-  animation:
-    pf-hero-type 1.1s steps(15, end) 0.1s forwards,
-    pf-hero-caret 0.8s step-end 0.1s infinite;
-}
-
-@keyframes pf-hero-type {
-  to {
-    width: 15ch;
-  }
-}
-
-@keyframes pf-hero-caret {
-  50% {
-    border-color: transparent;
-  }
 }
 
 /* ------------------------- staggered lines -------------------------- */
@@ -88,11 +64,48 @@
 }
 
 .pf-hero__tagline {
+  display: block;
+  /* Reserve two lines so the layout doesn't jump as the role types/wraps. */
+  min-height: 2.1em;
   margin: 0 0 var(--pf-space-4, 1.5rem);
   color: var(--pf-slate, #8892b0);
   font-size: clamp(2rem, 8vw, 4.5rem);
   font-weight: 700;
   line-height: 1.05;
+}
+
+/* Rotating role, typed out letter-by-letter from JS, with a blinking caret. */
+.pf-hero__role-type {
+  background: linear-gradient(
+    120deg,
+    var(--pf-slate-light, #a8b2d1),
+    var(--pf-slate, #8892b0)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pf-hero__role-caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  margin-left: 6px;
+  background: var(--pf-accent, #64ffda);
+  vertical-align: baseline;
+  animation: pf-role-caret 0.8s step-end infinite;
+}
+
+@keyframes pf-role-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-hero__role-caret {
+    animation: none;
+  }
 }
 
 .pf-hero__intro {
@@ -116,6 +129,7 @@
   font-family: var(--pf-font-mono, monospace);
   font-size: var(--pf-fs-sm, 0.875rem);
   text-decoration: none;
+  cursor: pointer;
   transition:
     color var(--pf-duration-fast, 0.2s) var(--pf-ease),
     transform var(--pf-duration-fast, 0.2s) var(--pf-ease),

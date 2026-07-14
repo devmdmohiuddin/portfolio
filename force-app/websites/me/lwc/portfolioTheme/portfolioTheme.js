@@ -115,6 +115,7 @@ community_byo-scoped-header-and-footer,
   --pf-stagger: 100ms;
   --pf-z-rails: 10;
   --pf-z-nav: 100;
+  --pf-z-modal: 1000;
 }
 html {
   background: var(--pf-bg) !important;

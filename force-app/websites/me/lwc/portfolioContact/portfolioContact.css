@@ -65,6 +65,7 @@
   font-family: var(--pf-font-mono, monospace);
   font-size: var(--pf-fs-sm, 0.875rem);
   text-decoration: none;
+  cursor: pointer;
   transition:
     color var(--pf-duration-fast, 0.2s) var(--pf-ease),
     transform var(--pf-duration-fast, 0.2s) var(--pf-ease),

@@ -49,18 +49,23 @@ describe("c-portfolio-contact", () => {
     ).toBe(CONFIG.Availability_Message__c);
   });
 
-  it("points Say Hello at the config email", async () => {
+  it("opens the contact dialog when Say Hello is clicked", async () => {
     const element = await createComponent();
 
     const cta = element.shadowRoot.querySelector(".pf-contact__cta");
     expect(cta.textContent.trim()).toBe("Say Hello");
-    expect(cta.getAttribute("href")).toBe("mailto:shuvobh1998@gmail.com");
+
+    const dialog = element.shadowRoot.querySelector("c-contact-dialog");
+    dialog.open = jest.fn();
+    cta.click();
+    expect(dialog.open).toHaveBeenCalled();
   });
 
-  it("hides the CTA and message when the config omits them", async () => {
+  it("hides the message when the config omits it but keeps the CTA", async () => {
     const element = await createComponent({});
 
-    expect(element.shadowRoot.querySelector(".pf-contact__cta")).toBeNull();
+    // The Say Hello button is always available now (opens the dialog).
+    expect(element.shadowRoot.querySelector(".pf-contact__cta")).not.toBeNull();
     expect(element.shadowRoot.querySelector(".pf-contact__message")).toBeNull();
     // Static copy still renders.
     expect(

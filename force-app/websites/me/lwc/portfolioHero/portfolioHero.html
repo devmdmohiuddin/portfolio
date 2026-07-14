@@ -14,19 +14,29 @@
         <h1 class="pf-hero__name" style="--pf-delay: 200ms">{fullName}</h1>
       </template>
 
-      <template lwc:if={tagline}>
-        <h2 class="pf-hero__tagline" style="--pf-delay: 300ms">{tagline}</h2>
+      <template lwc:if={hasRoles}>
+        <h2 class="pf-hero__tagline" style="--pf-delay: 300ms">
+          <template lwc:if={reducedMotion}>
+            <span class="pf-hero__roles-static">{rolesJoined}</span>
+          </template>
+          <template lwc:else>
+            <span class="pf-hero__role-type">{roleText}</span
+            ><span class="pf-hero__role-caret" aria-hidden="true"></span>
+          </template>
+        </h2>
       </template>
 
       <template lwc:if={intro}>
         <p class="pf-hero__intro" style="--pf-delay: 400ms">{intro}</p>
       </template>
 
-      <template lwc:if={ctaHref}>
-        <div class="pf-hero__cta-wrap" style="--pf-delay: 500ms">
-          <a class="pf-hero__cta" href={ctaHref}>Get In Touch</a>
-        </div>
-      </template>
+      <div class="pf-hero__cta-wrap" style="--pf-delay: 500ms">
+        <button class="pf-hero__cta" type="button" onclick={openDialog}>
+          Get In Touch
+        </button>
+      </div>
     </div>
+
+    <c-contact-dialog></c-contact-dialog>
   </section>
 </template>

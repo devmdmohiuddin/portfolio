@@ -57,8 +57,14 @@
 }
 
 .pf-rail__icon {
-  --slds-c-icon-color-foreground-default: currentColor;
-  --sds-c-icon-color-foreground-default: currentColor;
+  display: inline-flex;
+}
+
+.pf-rail__icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
 }
 
 /* ------------------------------- email ------------------------------ */
