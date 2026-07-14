@@ -46,10 +46,10 @@
                     {
                       "attributes": {
                         "githubUrl": "https://github.com/devmdmohiuddin",
-                        "trailheadUrl": "",
+                        "trailheadUrl": "https://www.salesforce.com/trailblazer/themdmohiuddin",
                         "linkedinUrl": "https://www.linkedin.com/in/themdmohiuddin/",
                         "twitterUrl": "",
-                        "facebookUrl": "",
+                        "facebookUrl": "https://www.facebook.com/themdmohiuddin/",
                         "email": "themdmohiuddin@gmail.com"
                       },
                       "definition": "c:portfolioRails",
